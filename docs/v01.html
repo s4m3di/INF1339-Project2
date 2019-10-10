@@ -1,0 +1,42 @@
+<html>
+
+<style>
+     .output {font-family: verdana, sans-serif; font: 14px; color: forestgreen}
+</style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js">
+    //need to have two sets of scripts in this for some reason...
+    </script>
+<script>
+    //line above loads the P5.js library so we can use its functions below
+    
+    //line below stores some data in 'global' variables known to all functions URL is my article search "cognition" on the NYT API website with my personal API key
+    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=cognition&api-key=jToTEZbMbZ1PLymttRAwv2zEW876RJml";
+    var articleCount = 0
+    
+    //line below is the standard way to tell P5 to start a script
+    function setup() {
+        //line below tells P5 that we don't want the default drawing function
+        noCanvas();
+        
+        //line below is a callback function that sends the URL on line 8 a request for certain data and when it gets sent back, we want it to run that on function "gotData" - happens on line 18
+        loadJSON(url, gotData);
+    }
+        
+    //line two below is the callback for now just announcing itself when it gets returned
+    function gotData(data) {
+        alert("FUNCTION gotData WAS ACTIVATED!")
+        document.getElementById("test_output").innerHTML = data.response.docs[0].headline.main 
+    }
+</script>
+<head>
+<title>Samantha D INF1339 Project 2</title>
+
+</head>
+
+<body>
+    <h4>API Project A19 Iteration 3</h4>
+    <h2 class="output">NYT API: Full history of articles about cognition</h2>
+    <p id= "test_output" class= "output"></p>
+</body>
+    
+</html>
