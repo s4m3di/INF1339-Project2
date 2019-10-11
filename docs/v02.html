@@ -1,0 +1,48 @@
+<html>
+
+<style>
+     .output {font-family: verdana, sans-serif; font: 14px; color: crimson}
+</style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js">
+    //need to have two sets of scripts in this for some reason...
+    </script>
+<script>
+    //line above loads the P5.js library so we can use its functions below
+    
+    //line below stores some data in 'global' variables known to all functions URL is my article search "cognition" on the NYT API website with my personal API key
+    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Liverpool&api-key=jToTEZbMbZ1PLymttRAwv2zEW876RJml";
+    var articleCount = 0
+    
+    //line below is the standard way to tell P5 to start a script
+    function setup() {
+        //line below tells P5 that we don't want the default drawing function
+        noCanvas();
+        
+        //line below is a callback function that sends the URL a request for certain data and when it gets sent back, we want it to run that on function "gotData"
+        loadJSON(url, gotData);
+    }
+        
+    //line two below is the callback for now just announcing itself when it gets returned
+    function gotData(data) {
+        var text = ''
+        for (i=0; i < data.response.docs.length; i++) {
+            //for the line above it's saying we will loop the function i number of times, starting at 0 and moving up i++ (one increment at a time), where i is the length that is built into the data array
+            text = text + '<br />' + data.response.docs[i].headline.main
+                //the above grabs all the headlines and displays them by forcing them in, but also adds a break between each one
+        }
+        document.getElementById("test_output").innerHTML = text
+            //this takes what we define as text above and performs the function in the body below where the p id is "test_output"
+    }
+</script>
+<head>
+<title>Samantha D INF1339 Project 2</title>
+
+</head>
+
+<body>
+    <h4>API Project A19 Iteration 3</h4>
+    <h2 class="output">NYT API: Full history of articles about Liverpool FC</h2>
+    <p id= "test_output" class= "output"></p>
+</body>
+    
+</html>
