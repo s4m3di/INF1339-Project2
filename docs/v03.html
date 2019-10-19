@@ -27,7 +27,7 @@
         var text = ''
         for (i=0; i < data.response.docs.length; i++) {
             //for the line above it's saying we will loop the function i number of times, starting at 0 and moving up i++ (one increment at a time), where i is the length that is built into the data array
-            text = text + '<br />' + data.response.docs[i].headline.main
+            text = text + '<br />' + data.response.docs[i].headline.main + '<br />' + '<br/ >' + data.response.docs[i].snippet + '<br />' + '<br />'
                 //the above grabs all the headlines and displays them by forcing them in, but also adds a break between each one
         }
         document.getElementById("test_output").innerHTML = text
